@@ -63,33 +63,32 @@ if ((Confirm == "S") or (Confirm == "s")):
 
         print("\n")
 
-        Order2 = input("Escolha um dos números acima, por favor: ")
+        Order2 = int(input("Escolha um dos números acima, por favor: "))
 
         print("\n")
 
         if Order2 == 1:
-            Pedido = 0
+            Pedido2 = 0
         elif Order2 == 2:
-            Pedido = 1
+            Pedido2 = 1
         elif Order2 == 3:
-            Pedido = 2
+            Pedido2 = 2
         elif Order2 == 4:
-            Pedido = 3
-
-            qtd2 = int(input("Digite a quantidade que vocês deseja: \n"))
-
-            Total2 = qtd2 * ListPrices2[Pedido]
-
-            TotalRealCONFIA = Total + Total2
-
-            ped2 = [Name, ListCode[Pedido], ListFood[Pedido], "R$:", ListPrices[Pedido], qtd, ListCode2[Pedido], ListDessert[Pedido], "R$:", ListPrices2[Pedido], qtd, TotalRealCONFIA]
-
-            print("\n")
-
-            print("O cliente %s comprou %d unidade(s) de %s, com um acompanhamento de %d unidade(s) de %s, o total da compra foi de R$ %0.2f.\n" %(Name, qtd, ListFood[Pedido], qtd2, ListDessert, TotalRealCONFIA))
-
+            Pedido2 = 3
         else:
-            print("Pedido Incorreto, por favor escolha uma das opções abaixo")
+            print("Opção inválida, por favor, escolha um número do cardápio")
+
+        qtd2 = int(input("Digite a quantidade que vocês deseja: \n"))
+
+        Total2 = qtd2 * ListPrices2[Pedido2]
+
+        TotalRealCONFIA = Total + Total2
+
+        ped2 = [Name, ListCode[Pedido], ListFood[Pedido], "R$:", ListPrices[Pedido], qtd, ListCode2[Pedido2], ListDessert[Pedido2], "R$:", ListPrices2[Pedido2], qtd, TotalRealCONFIA]
+
+        print("\n")
+
+        print("O cliente %s comprou %d unidade(s) de %s, com um acompanhamento de %d unidade(s) de %s, o total da compra foi de R$ %0.2f.\n" %(Name, qtd, ListFood[Pedido], qtd2, ListDessert[Pedido2], TotalRealCONFIA))
     else:
         print("Tenha um bom dia!\n")
 else:
