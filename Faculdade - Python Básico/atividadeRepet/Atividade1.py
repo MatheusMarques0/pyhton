@@ -4,5 +4,8 @@ print("1)Elaborar um algoritomo que leia um valor de tempratura em graus Celsius
 
 
 for n in range (5):
-cel = Flot(p  digite a temperatura em graus Celsius"))
+    Cel = float(input("Por favor, digite uma temperatura em graus Celsius\n"))
+    k = Cel + 273
+    print("%0.2f°C é o equivalente a %0.2f°K\n" %(Cel, k))
 
+    # *Exemplo feito em sala de Aula
