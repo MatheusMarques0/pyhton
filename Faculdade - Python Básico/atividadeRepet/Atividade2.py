@@ -1,6 +1,6 @@
-print("Atividade 2: Exercícios - Estrutura de Repetição - PARA (atividade do dia 24/04)\n")
+print("Atividade 1: Exercícios - Estrutura de Repetição - PARA (atividade do dia 24/04)\n")
 
-print("Elaborar um algoritmo que leia um número inteiro e mostre uma mensagem indicando se este número é múltiplo de 3 e se é positivo ou negativo. Esse programa deve-se repetir 6 vezes\n")
+print("2)Elaborar um algoritmo que leia um número inteiro e mostre uma mensagem indicando se este número é múltiplo de 3 e se é positivo ou negativo. Esse programa deve-se repetir 6 vezes\n")
 
 for n in range (6):
     i = int(input("Escreva um número inteiro... e adivinharei se ele é múltiplo de 3, positivo ou negativo!"))
