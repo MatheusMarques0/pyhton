@@ -7,7 +7,6 @@ valores = []
 for n in range (15):
     val = float(input("Digite um valor para ser usado\n"))
     valores.append(val)
-    print(valores)
 
 soma = sum(valores)
 
