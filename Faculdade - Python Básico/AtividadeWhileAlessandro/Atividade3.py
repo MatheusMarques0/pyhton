@@ -12,4 +12,7 @@ while (num != 0):
 
 else:
     soma = sum(lista)
-    print("A somatória das listas é de %0.2f" % (soma))
+    total = len(lista)
+    media = soma / total
+
+    print("A somatória das listas é de %0.2f, e sua média é %0.2f" % (soma, media))
