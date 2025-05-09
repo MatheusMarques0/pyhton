@@ -7,7 +7,7 @@ unique_list = []
 normal_list = []
 
 while len(unique_list) < 15:
-    num = float(input("Digite um número, se for repetido não será contado"))
+    num = float(input("Digite um número, se for repetido não será contado \n"))
     normal_list.append(num)
 
     unique = set(normal_list)
