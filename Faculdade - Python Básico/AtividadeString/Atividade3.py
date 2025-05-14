@@ -15,4 +15,5 @@ for n in range (tamanho):
     palavra.append(letra)
     y = y + 1
 
-print(palavra)
+palavra.reverse()
+print(f"{palavra}")
