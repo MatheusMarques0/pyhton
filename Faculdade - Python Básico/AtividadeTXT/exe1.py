@@ -2,7 +2,7 @@ print("1) Desenvolva um algoritmo que escreve em disco um arquivo com números o
 
 lista = []
 
-arquivo = open("AtividadeTXT/crescente.txt", "w")
+arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/crescente.txt", "w")
 
 for n in range(100):
     if n < 99:
