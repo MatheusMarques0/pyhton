@@ -4,6 +4,7 @@ print("3)Desenvolva um programa que cadastra alunos.")
 
 confirm = "s"
 
+names = []
 aluno = []
 student = []
 
@@ -22,17 +23,17 @@ def menu(): #Menu, ele será a primeira coisa a ser chamada, retorna um input
     return option
 
 def cadastro(): #Abre arquivo, pega nome, coloca no arquivo, repita.
-    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "w")
+    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "a")
     nome = str(input("Digite o nome do aluno a ser cadastrado: "))
     arquivo.write(str("nome:" + nome + " "))
     email = str(input("Digite o e-mail do aluno a ser cadastrado: "))
     arquivo.write(str("e-mail:" + email + " "))
-    curso = str(input("Digite o curso do aluno"))
+    curso = str(input("Digite o curso do aluno: "))
     arquivo.write(str("curso:" + curso + " ") + "\n")
     arquivo.close()
     print("\nArquivo gerado com sucesso!")
 
-def listar(): 
+def listar(): #Essa foi complicada.
     arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "r")
     listar = arquivo.readlines() #Irá ler linha por linha
     tamanholistar = len(listar) #Tamanho do arquivo
@@ -45,10 +46,25 @@ def listar():
     arquivo.close()
 
 def buscar():
-    w
+    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "r")
+    listar = arquivo.readlines() #Vai ler o arquivo todo
+    arquivo.close()
+
+    searchFulano = str(input("Digite o nome do aluno que quer buscar: ")).strip() #input
+    encontrado = False #A priori, falso, o código vai falar se é verdadeiro
+
+    for linha in listar: #Vai procurar na linha toda
+        if f"nome:{searchFulano}" in linha: #Se o nome estiver em linha: encontrado
+            print("Aluno encontrado!")
+            print(linha)
+            encontrado = True #Se verdadeiro, o encontrado se torna True e passa direto pelo if not
+            break
+
+    if not encontrado: #inverte o valor da condição, aqui seria verdadeiro, pois o aluno não foi encontrado, então inverti para que se o código for verdadeiro, ele passa direto, se for falso ele vai pra cá, estava colando isso no for, estava errado.
+        print("Aluno não encontrado.")
 
 def remove():
-    s
+    sim #a fazer
 
 #Main
 
@@ -71,4 +87,3 @@ while confirm == "s":
     else:
         print("Aplicação terminada")
         confirm = "n"
-
