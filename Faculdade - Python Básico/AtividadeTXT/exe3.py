@@ -5,10 +5,11 @@ print("3)Desenvolva um programa que cadastra alunos.")
 confirm = "s"
 
 aluno = []
+student = []
 
 #Funções
 
-def menu():
+def menu(): #Menu, ele será a primeira coisa a ser chamada, retorna um input
     print("1) Cadastrar novo aluno")
     print("2) Listar alunos cadastrados")
     print("3) Buscar aluno")
@@ -20,8 +21,8 @@ def menu():
 
     return option
 
-def cadastro():
-    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "a")
+def cadastro(): #Abre arquivo, pega nome, coloca no arquivo, repita.
+    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "w")
     nome = str(input("Digite o nome do aluno a ser cadastrado: "))
     arquivo.write(str("nome:" + nome + " "))
     email = str(input("Digite o e-mail do aluno a ser cadastrado: "))
@@ -31,8 +32,17 @@ def cadastro():
     arquivo.close()
     print("\nArquivo gerado com sucesso!")
 
-def listar():
-    s
+def listar(): 
+    arquivo = open("C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastro.txt", "r")
+    listar = arquivo.readlines() #Irá ler linha por linha
+    tamanholistar = len(listar) #Tamanho do arquivo
+    for n in range(tamanholistar): #Ponteiro para a repetição
+        linha = listar[0] #Pega o primeiro termo da lista (o primeiro cadastro, no caso), inicialmente eu estava com problemas por colocar [listar[0]] com duas chaves [], mas pelo visto isso torna linha uma lista, e listas não podem usar .find(), algo para se anotar.
+        start_fulano = linha.find("nome:") + len("nome:") #Acha a palavra nome, tem indice 0, por isso coloquei + len("nome"), quero saber o nome do aluno, não "nome:fulano". Poderia ter colocado só 5 também, mas ficaria menos escalavel.
+        end_fulano = linha.find("e-mail:") #Vai achar o índice do email, ou seja, quando ele começa
+        name = linha[start_fulano:end_fulano].strip() #O professor ensinou esse método em sala da aula, ele vai do ponto A até o B da lista, no caso, onde começa o nome e onde começa o email. Eu não sei se o professor ensinou o strip em sala de aula, mas eu vi isso naquele desafio da Erika junto com o Luigi :D
+        print(name) #Vai retornar o nome do aluno
+    arquivo.close()
 
 def buscar():
     w
@@ -44,9 +54,9 @@ def remove():
 
 while confirm == "s":
 
-    escolha = menu()
+    escolha = menu() # mostrará o menu, e o resultado virará uma variável
 
-    if escolha == "1":
+    if escolha == "1": #dependendo da escolha o comando irá fazer algo
         print("A opção desejada foi fazer o cadastro de um novo aluno \n")
         cadastro()
     elif escolha == "2":
