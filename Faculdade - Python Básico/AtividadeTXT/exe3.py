@@ -4,10 +4,6 @@ print("3)Desenvolva um programa que cadastra alunos.")
 
 confirm = "s"
 
-names = []
-aluno = []
-student = []
-
 #Funções
 
 def menu(): #Menu, ele será a primeira coisa a ser chamada, retorna um input
