@@ -1,4 +1,0 @@
-nome:matheus e-mail:matheus curso:matheus 
-nome:123 e-mail:123 curso:123 
-nome:321 e-mail:321 curso:321 
-nome: e-mail: curso: 
