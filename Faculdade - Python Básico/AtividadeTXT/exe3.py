@@ -100,10 +100,6 @@ while confirm == "s":
 
     escolha = menu() # mostrará o menu, e o resultado virará uma variável
 
-    while escolha != "1" and escolha != "2" and escolha != "3" and escolha != "4" and escolha != "5":
-        print("[ERRO] Dígito inválido \n")
-        escolha
-
     if escolha == "1": #dependendo da escolha o comando irá fazer algo
         print("A opção desejada foi fazer o cadastro de um novo aluno \n")
         cadastro()
@@ -116,6 +112,8 @@ while confirm == "s":
     elif escolha == "4":
         print("A opção desejada foi de listar os alunos cadastrados \n")
         remove()
-    else:
+    elif escolha == "5":
         print("Aplicação terminada")
         confirm = "n"
+    else:
+        print("[ERRO] Dígito inválido \n")
