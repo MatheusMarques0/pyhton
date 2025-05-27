@@ -77,7 +77,16 @@ def CadastrarADM():
     print("Arquivo gerado com sucesso!")
 
 def ListarADM():
-    print("teste \n")
+    arquivo = open(caminho, "r")
+    listar = arquivo.readlines()
+    arquivo.close()
+
+    if len(listar) == 0:
+        print("Nenhum aluno encontrado")
+    else:
+        for linha in listar:
+            print(linha)
+
 
 def EditarADM():
     print("teste\n")
