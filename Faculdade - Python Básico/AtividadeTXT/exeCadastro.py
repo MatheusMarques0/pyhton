@@ -3,7 +3,7 @@ print("Faça um cadastro de ADM e Operador:")
 #variáveis
 
 confirmar = "s"
-caminho = "C:/Users/renat/OneDrive/Documentos/estudos/pyhton/Faculdade - Python Básico/AtividadeTXT/cadastroADM.txt"
+caminho = "cadastroADM.txt"
 confirm = "s"
 codigo = 0 #"Boas práticas"
 option = 0
@@ -13,6 +13,8 @@ price = 0
 dados = []
 temp = []
 temp_cod = []
+
+lista_produto = [] # função listar, 87 [codígos]
 
 #funções
 
@@ -41,6 +43,7 @@ def menuADM():
     return optionAdm
 
 def CadastrarADM():
+    print("\nA opção desejada foi de cadastrar no modo ADM")
     codigo = 0
     arquivo = open(caminho, 'r', encoding='utf-8')
     dados = arquivo.readlines()
@@ -67,29 +70,52 @@ def CadastrarADM():
 
 
     print("A opção escolhida foi cadastrar pedidos")
-    print(f"Código do pedido: {codigo} \n")
+    print(f"Código do pedido:{codigo}\n")
 
     arquivo = open(caminho, "a")
     description = str(input("Descreva o arquivo a ser computado: "))
     price = str(input("Digite qual será o preço do produto: "))
-    arquivo.write(f"{codigo} ; {description} ; {price} \n")
+    arquivo.write(f"{codigo};{description};{price}\n")
     arquivo.close()
     print("Arquivo gerado com sucesso!")
 
 def ListarADM():
     arquivo = open(caminho, "r")
     listar = arquivo.readlines()
-    arquivo.close()
+    for n in range(len(listar)):
+        listar[n] = listar[n].strip('\n') #transformando linnhas do txt em listas, sem espaçoes e sem dividas pelos ";"
+        listar[n] = listar[n].split(';')
+        lista_produto.append(listar[n][0])
+        lista_produto.append(listar[n][1])
+        lista_produto.append(listar[n][2])
 
-    if len(listar) == 0:
-        print("Nenhum aluno encontrado")
-    else:
-        for linha in listar:
-            print(linha)
-
+        print(listar[n])
+        arquivo.close()
+    ("\n")
 
 def EditarADM():
-    print("teste\n")
+    ListarADM() #chamando a função, reduzindo código
+
+    print(lista_produto)
+
+
+    print("A opção desejada foi Editar como ADM\n")
+
+    arquivo = open(caminho, "r")
+    listar = arquivo.readlines()
+         
+    cod_alterar = str(input("Digite o código do produto que deseja alterar: "))
+    while cod_alterar not in lista_produto:
+                cod_alterar = str(input("[ERRO], por favor digite um código que exista: "))
+
+    codigo_changer = lista_produto.index(cod_alterar)
+    print(lista_produto[codigo_changer][1])
+                
+        
+
+
+
+    arquivo.close()
 
 def ExcluirADM():
     print("teste\n")
@@ -105,13 +131,11 @@ while confirm == "s":
             escolhaAdm = menuADM()
 
             if escolhaAdm == "1": #Escolhas do modo ADM
-                print("A opção desejada foi de cadastrar no modo ADM\n")
                 CadastrarADM()
             elif escolhaAdm == "2":
-                print("A opção desejada foi de Listar como ADM\n")
+                print("\nA opção desejada foi de Listar como ADM\n")
                 ListarADM()
             elif escolhaAdm == "3":
-                print("A opção desejada foi Editar como ADM\n")
                 EditarADM()
             elif escolhaAdm == "4":
                 print("A opção desejada foi de Excluir com ADM\n")
