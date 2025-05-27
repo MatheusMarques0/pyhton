@@ -1,3 +1,4 @@
-100;agua;99
-101;leite;99
-102;coxinha;99
+100;agua;5
+101;leite;6
+102;hot-dog;10
+103;pastel;8

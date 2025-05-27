@@ -14,6 +14,7 @@ temp = []
 temp_cod = []
 
 lista_produto = [] # função listar, 87 [codígos]
+codigo_produto = [] #código dos pedidos, função listar
 
 #funções
 
@@ -36,7 +37,7 @@ def menuADM():
     print("5) Sair \n")
 
     optionAdm = str(input("Digite qual opção deseja (escreva um número de 1 a 5): "))
-    while optionAdm == "" and optionAdm != "1" and optionAdm != "2" and optionAdm != "3" and optionAdm != "4" and optionAdm != "5":
+    while optionAdm == "" or (optionAdm != "1" and optionAdm != "2" and optionAdm != "3" and optionAdm != "4" and optionAdm != "5"):
         optionAdm = str(input("Por favor, digite um número correto (de 1 a 5): "))
 
     return optionAdm
@@ -84,7 +85,8 @@ def ListarADM():
     for n in range(len(listar)):
         listar[n] = listar[n].strip('\n') #transformando linnhas do txt em listas, sem espaçoes e sem dividas pelos ";"
         listar[n] = listar[n].split(';')
-        lista_produto.append(listar)
+        codigo_produto.append(listar[n][0])
+        lista_produto.append(listar[n])
 
         print(listar[n])
         arquivo.close()
@@ -93,25 +95,39 @@ def ListarADM():
 def EditarADM():
     ListarADM() #chamando a função, reduzindo código
 
-    print(lista_produto)
-
-
     print("A opção desejada foi Editar como ADM\n")
 
     arquivo = open("cadastroADM.txt", "r")
     listar = arquivo.readlines()
          
     cod_alterar = str(input("Digite o código do produto que deseja alterar: "))
-    while cod_alterar not in lista_produto:
-                cod_alterar = str(input("[ERRO], por favor digite um código que exista: "))
+    while cod_alterar not in codigo_produto:
+        cod_alterar = str(input("[ERRO], por favor digite um código que exista: "))
 
-    codigo_changer = lista_produto.index(cod_alterar)
-    print(lista_produto[codigo_changer][1])
+    codigo_changer = codigo_produto.index(cod_alterar)
+    print("\nA descrição atual do produto é %s" %(lista_produto[codigo_changer][1])) #amém
+
+    new_description = str(input("Digite a nova descrição do produto: "))
+    while (new_description == ""):
+        new_description = str(input("[ERRO] Não deixe o espaço vazio, digite uma opção válida: "))
+
+    print("\nO preço atual do produto é: %s" %(lista_produto[codigo_changer][2]))
+
+    new_price = str(input("Digite um novo preço para o produto: "))
+    while (new_price == ""):
+        new_price = str(input("[ERRO] Não deixe o espaço vazio, digite uma opção válida: "))
+
+    print("O nova descrição do produto de código %s é: %s" %(codigo_produto[codigo_changer], new_description))
+    print("O novo preço de %s é: %s" %(new_description, new_price))
                 
-        
+    lista_produto[codigo_changer][1] = new_description
+    lista_produto[codigo_changer][2] = new_price
 
+    arquivo.close()
 
-
+    arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
+    for n in range(len(lista_produto)):
+        arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
     arquivo.close()
 
 def ExcluirADM():
