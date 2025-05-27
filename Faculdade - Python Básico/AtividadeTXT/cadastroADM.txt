@@ -1,0 +1,3 @@
+100;agua;99
+101;leite;99
+102;coxinha;99
