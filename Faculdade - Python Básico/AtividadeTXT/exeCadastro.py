@@ -9,8 +9,9 @@ option = 0
 optionAdm = 0
 description = 0
 price = 0
-dados = []
-
+temp = []
+dados_temp = []
+temp_cod = []
 lista_produto = [] # função listar, 87 [codígos]
 codigo_produto = [] #código dos pedidos, função listar
 
@@ -41,26 +42,26 @@ def menuADM():
     return optionAdm
 
 def CadastrarADM():
-    temp = []
-    temp_cod = []
 
     print("\nA opção desejada foi de cadastrar no modo ADM")
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')
     dados = arquivo.readlines()
     arquivo.close() # lembrar de perguntar o professor se isso pode fazer
+
     if dados == []:
         codigo = 100
+        arquivo.close()
     else:
         for i in range(len(dados)):
             dados[i] = dados[i].strip('\n')
             dados[i] = dados[i].split(';')
             temp.append(dados[i][0])
  
-        for i in range(len(temp)):
-            temp[i] = int(temp[i])  
+        for p in range(len(temp)):
+            temp[p] = int(temp[p])  
         numeros = set(temp)
-        esperado = set(range(min(numeros), max(numeros) + 1))
+        esperado = set(range((100), max(numeros) + 1))
         faltantes = sorted(esperado - set(numeros))
         if faltantes == []:
             codigo = str(max(temp) + 1)
@@ -70,27 +71,40 @@ def CadastrarADM():
             codigo = str(temp_cod[0])
 
 
-    print("A opção escolhida foi cadastrar produtos")
-    print(f"Código do pedido:{codigo}\n")
-
-    arquivo = open("cadastroADM.txt", "a")
     description = str(input("Descreva o arquivo a ser computado: "))
+    while (description == ""):
+        print("Valor inválido \n")
+        description = str(input("Descreva o arquivo a ser computado: "))
+
     price = str(input("Digite qual será o preço do produto: "))
-    arquivo.write(f"{codigo};{description};{price}\n")
-    arquivo.close()
+    while (price == "" or price.isalpha()):
+        print("Valor inválido! \n")
+        price = str(input("Digite qual será o preço do produto: "))
+
+    arquivo = open("cadastroADM.txt", 'a+', encoding='utf-8')
+    if dados == []:
+        arquivo.write(codigo + ";" + description + ";" + price)
+        arquivo.close()
+    else:
+        dados.append([codigo, description, price])
+        lista_cad = sorted(dados, key=lambda x: int(x[0]))
+        arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
+        for g in range (len(lista_cad)):
+            arquivo.write(str(lista_cad[g][0] + ";" + str(lista_cad[g][1] + ";" + str(lista_cad[g][2] + "\n"))))
+        arquivo.close()
+
     print("Arquivo gerado com sucesso!")
 
 def ListarADM():
     codigo_produto.clear() #isso é para limpar a lista, sem isso a lista ficará 
     lista_produto.clear() #. clear limpa completamente a lista em python, anota, anota, anota
-    arquivo = open("cadastroADM.txt", "r")
+    arquivo = open("cadastroADM.txt", "r", encoding ='utf-8')
     listar = arquivo.readlines()
     for n in range(len(listar)):
         listar[n] = listar[n].strip('\n') #transformando linnhas do txt em listas, sem espaçoes e sem dividas pelos ";"
         listar[n] = listar[n].split(';')
         codigo_produto.append(listar[n][0])
         lista_produto.append(listar[n])
-
         print(listar[n])
     arquivo.close()
     print("\n")
@@ -98,17 +112,16 @@ def ListarADM():
 def EditarADM():
     ListarADM() #chamando a função, reduzindo código
 
-    print("A opção desejada foi Editar como ADM\n")
+    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
 
-    arquivo = open("cadastroADM.txt", "r")
-    listar = arquivo.readlines()
+    print("A opção desejada foi Editar como ADM\n")
          
     cod_alterar = str(input("Digite o código do produto que deseja alterar: "))
     while cod_alterar not in codigo_produto:
         cod_alterar = str(input("[ERRO], por favor digite um código que exista: "))
 
     codigo_changer = codigo_produto.index(cod_alterar)
-    print("\nA descrição atual do produto é %s" %(lista_produto[codigo_changer][1])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+    print("\nA descrição atual do produto é: %s" %(lista_produto[codigo_changer][1])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
 
     new_description = str(input("Digite a nova descrição do produto: "))
     while (new_description == ""):
@@ -134,7 +147,7 @@ def EditarADM():
     arquivo.close()
 
 def ExcluirADM():
-    print("teste\n")
+    print("teste")
 #Main
 
 while confirm == "s":
