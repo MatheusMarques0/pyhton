@@ -80,6 +80,8 @@ def CadastrarADM():
     print("Arquivo gerado com sucesso!")
 
 def ListarADM():
+    codigo_produto.clear() #isso é para limpar a lista, sem isso a lista ficará 
+    lista_produto.clear() #. clear limpa completamente a lista em python, anota, anota, anota
     arquivo = open("cadastroADM.txt", "r")
     listar = arquivo.readlines()
     for n in range(len(listar)):
@@ -89,10 +91,12 @@ def ListarADM():
         lista_produto.append(listar[n])
 
         print(listar[n])
-        arquivo.close()
-    ("\n")
+    arquivo.close()
+    print("\n")
 
 def EditarADM():
+    lista_produto.clear() #só por garantia
+    codigo_produto.clear()
     ListarADM() #chamando a função, reduzindo código
 
     print("A opção desejada foi Editar como ADM\n")
@@ -105,7 +109,7 @@ def EditarADM():
         cod_alterar = str(input("[ERRO], por favor digite um código que exista: "))
 
     codigo_changer = codigo_produto.index(cod_alterar)
-    print("\nA descrição atual do produto é %s" %(lista_produto[codigo_changer][1])) #amém
+    print("\nA descrição atual do produto é %s" %(lista_produto[codigo_changer][1])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
 
     new_description = str(input("Digite a nova descrição do produto: "))
     while (new_description == ""):
@@ -149,9 +153,10 @@ while confirm == "s":
                 print("\nA opção desejada foi de Listar como ADM\n")
                 ListarADM()
             elif escolhaAdm == "3":
+                print("A opção deseajda foi de Editar como ADM\n")
                 EditarADM()
             elif escolhaAdm == "4":
-                print("A opção desejada foi de Excluir com ADM\n")
+                print("A opção desejada foi de Excluir como ADM\n")
                 ExcluirADM()
             elif escolhaAdm == "5":
                 print("A opção desejada foi de sair do modo ADM\n")

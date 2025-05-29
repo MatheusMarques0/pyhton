@@ -1,4 +1,4 @@
 100;agua;5
-101;leite;6
-102;hot-dog;10
-103;pastel;8
+101;kibe;7
+102;coxinha;9
+103;rosquinha;8
