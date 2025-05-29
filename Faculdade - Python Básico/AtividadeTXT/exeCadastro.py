@@ -147,7 +147,32 @@ def EditarADM():
     arquivo.close()
 
 def ExcluirADM():
-    print("teste")
+    ListarADM() #chamando a função, reduzindo código
+
+    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
+
+    print("A opção desejada foi de Excluir como ADM\n")
+         
+    cod_erase = str(input("Digite o código do produto que deseja excluir: "))
+    while cod_erase not in codigo_produto:
+        cod_erase = str(input("[ERRO], por favor digite um código que exista: "))
+
+    codigo_changer = codigo_produto.index(cod_erase)
+    print("\nO produto selecionado tem o código de: %s, descrição de: %s e preço de %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+
+    conf = str(input("Tem certeza que deseja apagar o produto? (1 = 'sim' / 2 = 'não'): "))
+    while (conf != 1 and conf != 2):
+        print("Insira uma opção")
+    
+    arquivo.close()
+
+    arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
+    for n in range(len(lista_produto)):
+        arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
+    arquivo.close()
+
+
+
 #Main
 
 while confirm == "s":
