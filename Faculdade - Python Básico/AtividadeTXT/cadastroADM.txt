@@ -1,4 +1,3 @@
-100;agua;5
-101;kibe;7
-102;coxinha;9
-103;rosquinha;8
+100;pudding;8
+101;torta;25
+102;lasanha;15

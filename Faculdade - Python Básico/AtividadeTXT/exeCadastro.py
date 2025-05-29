@@ -24,7 +24,7 @@ def menu(): #Menu, ele será a primeira coisa a ser chamada, retorna um input
     print("3) Sair \n")
 
     option = str(input("Digite qual opção deseja (escreva um número de 1 a 3): ")).strip()
-    while option == "" and option != "1" and option != "2" and option != "3": #tirando erros
+    while option == "" or (option != "1" and option != "2" and option != "3"): #tirando erros
         option = str(input("Por favor, digite um número correto (de 1 a 3): "))
 
     return option
@@ -47,6 +47,7 @@ def CadastrarADM():
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')
     dados = arquivo.readlines()
+    arquivo.close() # lembrar de perguntar o professor se isso pode fazer
     if dados == []:
         codigo = 100
     else:
@@ -54,7 +55,6 @@ def CadastrarADM():
             dados[i] = dados[i].strip('\n')
             dados[i] = dados[i].split(';')
             temp.append(dados[i][0])
-            arquivo.close()
  
         for i in range(len(temp)):
             temp[i] = int(temp[i])  
@@ -95,8 +95,6 @@ def ListarADM():
     print("\n")
 
 def EditarADM():
-    lista_produto.clear() #só por garantia
-    codigo_produto.clear()
     ListarADM() #chamando a função, reduzindo código
 
     print("A opção desejada foi Editar como ADM\n")
@@ -165,7 +163,7 @@ while confirm == "s":
                 print("[ERRO] digite um número válido (1 a 5): ")
 
     elif escolha == "2": #Se escolher operador... #se for 2, modo Operador
-        print("A opção desejada foi de entrar como ADM \n")
+        print("A opção desejada foi de entrar como Operador! \n")
     elif escolha == "3": #Se escolher sair...
         print("A opção desejada foi de sair")
         confirm = "n"
