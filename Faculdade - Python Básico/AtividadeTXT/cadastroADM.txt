@@ -1,3 +1,0 @@
-100;pudding;8
-101;torta;25
-102;lasanha;15

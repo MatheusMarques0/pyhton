@@ -10,8 +10,6 @@ optionAdm = 0
 description = 0
 price = 0
 dados = []
-temp = []
-temp_cod = []
 
 lista_produto = [] # função listar, 87 [codígos]
 codigo_produto = [] #código dos pedidos, função listar
@@ -43,6 +41,9 @@ def menuADM():
     return optionAdm
 
 def CadastrarADM():
+    temp = []
+    temp_cod = []
+
     print("\nA opção desejada foi de cadastrar no modo ADM")
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')
@@ -69,7 +70,7 @@ def CadastrarADM():
             codigo = str(temp_cod[0])
 
 
-    print("A opção escolhida foi cadastrar pedidos")
+    print("A opção escolhida foi cadastrar produtos")
     print(f"Código do pedido:{codigo}\n")
 
     arquivo = open("cadastroADM.txt", "a")
