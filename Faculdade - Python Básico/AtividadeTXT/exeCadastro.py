@@ -42,6 +42,10 @@ def menuADM():
     return optionAdm
  
 def CadastrarADM():
+
+    temp.clear()
+    temp_cod.clear()
+    
     print("\nA opção desejada foi de cadastrar no modo ADM")
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')

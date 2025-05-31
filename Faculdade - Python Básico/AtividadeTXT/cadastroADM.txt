@@ -1,7 +1,8 @@
-100;agua;2
+100;pao de quiejo;3
 101;coxinha;7
 102;pastel;11
 103;hot-dog;11
+104;pizza;9
 105;sorvete;5
 106;pepsi;8
 107;coca;9
