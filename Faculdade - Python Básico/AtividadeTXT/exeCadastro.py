@@ -46,7 +46,6 @@ def CadastrarADM():
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')
     dados = arquivo.readlines()
-    arquivo.close() # lembrar de perguntar o professor se isso pode fazer
 
     if dados == []:
         codigo = 100
@@ -56,7 +55,8 @@ def CadastrarADM():
             dados[i] = dados[i].strip('\n')
             dados[i] = dados[i].split(';')
             temp.append(dados[i][0])
- 
+        arquivo.close()
+
         for p in range(len(temp)):
             temp[p] = int(temp[p])  
         numeros = set(temp)
@@ -68,6 +68,8 @@ def CadastrarADM():
             for numero in faltantes:
                 temp_cod.append(numero)
             codigo = str(temp_cod[0])
+
+    print(f"Código do produto: {codigo}")
 
     description = str(input("Descreva o arquivo a ser computado: "))
     while (description == ""):
@@ -81,14 +83,14 @@ def CadastrarADM():
 
     arquivo = open("cadastroADM.txt", 'a+', encoding='utf-8')
     if dados == []:
-        arquivo.write(codigo + ";" + description + ";" + price)
+        arquivo.write(f"{codigo}" + ";" + description + ";" + price)
         arquivo.close()
     else:
         dados.append([codigo, description, price])
         lista_cad = sorted(dados, key=lambda x: int(x[0]))
         arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
         for g in range (len(lista_cad)):
-            arquivo.write(str(lista_cad[g][0] + ";" + str(lista_cad[g][1] + ";" + str(lista_cad[g][2] + "\n"))))
+            arquivo.write(str(lista_cad[g][0]) + ";" + str(lista_cad[g][1]) + ";" + str(lista_cad[g][2]) + "\n")
         arquivo.close()
 
     print("Arquivo gerado com sucesso!")
@@ -110,8 +112,6 @@ def ListarADM():
 def EditarADM():
     ListarADM() #chamando a função, reduzindo código
  
-    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
-
     arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
 
     print("A opção desejada foi Editar como ADM\n")
@@ -149,10 +149,6 @@ def EditarADM():
 def ExcluirADM():
     ListarADM() #chamando a função, reduzindo código
 
-    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
- 
-    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
-
     print("A opção desejada foi de Excluir como ADM\n")
          
     cod_erase = str(input("Digite o código do produto que deseja excluir: "))
@@ -160,27 +156,21 @@ def ExcluirADM():
         cod_erase = str(input("[ERRO], por favor digite um código que exista: "))
  
     codigo_changer = codigo_produto.index(cod_erase)
-    print("\nO produto selecionado tem o código de: %s, descrição de: %s e preço de %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+    print("\nO produto selecionado tem o código: %s. Descrição: %s. Preço: %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) 
  
     conf = str(input("Tem certeza que deseja apagar o produto? (1 = 'sim' / 2 = 'não'): "))
-    while (conf != 1 and conf != 2):
-        print("Insira uma opção")
-   
-    arquivo.close()
- 
-    codigo_changer = codigo_produto.index(cod_erase)
-    print("\nO produto selecionado tem o código de: %s, descrição de: %s e preço de %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+    while (conf != "1" and conf != "2"):
+        conf = str(input("[ERRO] por favor digite uma opçã válida (1 ou 2): "))
 
-    conf = str(input("Tem certeza que deseja apagar o produto? (1 = 'sim' / 2 = 'não'): "))
-    while (conf != 1 and conf != 2):
-        print("Insira uma opção")
-    
-    arquivo.close()
+    if conf == "1":
+        lista_produto.pop(codigo_changer)
+        codigo_produto.pop(codigo_changer)
 
-    arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
-    for n in range(len(lista_produto)):
-        arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
-    arquivo.close()
+        with open("cadastroADM.txt", "w", encoding="utf-8") as arquivo: #se não colocar "with open" o 'arquivo' da erro
+            for n in range(len(lista_produto)):
+                arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
+    else:
+        print("Ação Cancelada! \n")
 
 #Main
  

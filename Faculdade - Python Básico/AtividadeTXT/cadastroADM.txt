@@ -1,5 +1,8 @@
-100;Água;5.00
-101;teste5;5
-102;coxinha;8
-103;pizza;12
-104;teste78;8
+100;agua;2
+101;coxinha;7
+102;pastel;11
+103;hot-dog;11
+105;sorvete;5
+106;pepsi;8
+107;coca;9
+108;tang;4
