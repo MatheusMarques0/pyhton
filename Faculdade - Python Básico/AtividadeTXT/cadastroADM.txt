@@ -1,0 +1,5 @@
+100;Água;5.00
+101;teste5;5
+102;coxinha;8
+103;pizza;12
+104;teste78;8

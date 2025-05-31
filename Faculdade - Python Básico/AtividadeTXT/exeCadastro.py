@@ -42,13 +42,21 @@ def menuADM():
     return optionAdm
  
 def CadastrarADM():
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     print("\nA opção desejada foi de cadastrar no modo ADM")
     codigo = 0
     arquivo = open("cadastroADM.txt", 'r', encoding='utf-8')
     dados = arquivo.readlines()
     arquivo.close() # lembrar de perguntar o professor se isso pode fazer
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     if dados == []:
         codigo = 100
         arquivo.close()
@@ -69,18 +77,31 @@ def CadastrarADM():
             for numero in faltantes:
                 temp_cod.append(numero)
             codigo = str(temp_cod[0])
+<<<<<<< HEAD
  
  
+=======
+
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     description = str(input("Descreva o arquivo a ser computado: "))
     while (description == ""):
         print("Valor inválido \n")
         description = str(input("Descreva o arquivo a ser computado: "))
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     price = str(input("Digite qual será o preço do produto: "))
     while (price == "" or price.isalpha()):
         print("Valor inválido! \n")
         price = str(input("Digite qual será o preço do produto: "))
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     arquivo = open("cadastroADM.txt", 'a+', encoding='utf-8')
     if dados == []:
         arquivo.write(codigo + ";" + description + ";" + price)
@@ -92,7 +113,11 @@ def CadastrarADM():
         for g in range (len(lista_cad)):
             arquivo.write(str(lista_cad[g][0] + ";" + str(lista_cad[g][1] + ";" + str(lista_cad[g][2] + "\n"))))
         arquivo.close()
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     print("Arquivo gerado com sucesso!")
  
 def ListarADM():
@@ -111,9 +136,15 @@ def ListarADM():
  
 def EditarADM():
     ListarADM() #chamando a função, reduzindo código
+<<<<<<< HEAD
  
     arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
  
+=======
+
+    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     print("A opção desejada foi Editar como ADM\n")
          
     cod_alterar = str(input("Digite o código do produto que deseja alterar: "))
@@ -122,7 +153,11 @@ def EditarADM():
  
     codigo_changer = codigo_produto.index(cod_alterar)
     print("\nA descrição atual do produto é: %s" %(lista_produto[codigo_changer][1])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     new_description = str(input("Digite a nova descrição do produto: "))
     while (new_description == ""):
         new_description = str(input("[ERRO] Não deixe o espaço vazio, digite uma opção válida: "))
@@ -148,14 +183,21 @@ def EditarADM():
  
 def ExcluirADM():
     ListarADM() #chamando a função, reduzindo código
+<<<<<<< HEAD
  
     arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
  
+=======
+
+    arquivo = open("cadastroADM.txt", "r", encoding='utf-8')
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     print("A opção desejada foi de Excluir como ADM\n")
          
     cod_erase = str(input("Digite o código do produto que deseja excluir: "))
     while cod_erase not in codigo_produto:
         cod_erase = str(input("[ERRO], por favor digite um código que exista: "))
+<<<<<<< HEAD
  
     codigo_changer = codigo_produto.index(cod_erase)
     print("\nO produto selecionado tem o código de: %s, descrição de: %s e preço de %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
@@ -166,13 +208,31 @@ def ExcluirADM():
    
     arquivo.close()
  
+=======
+
+    codigo_changer = codigo_produto.index(cod_erase)
+    print("\nO produto selecionado tem o código de: %s, descrição de: %s e preço de %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) #amém, eu tive que criar 2 listas para que ess método funcionasse, uma com os código e uma com os pedidos
+
+    conf = str(input("Tem certeza que deseja apagar o produto? (1 = 'sim' / 2 = 'não'): "))
+    while (conf != 1 and conf != 2):
+        print("Insira uma opção")
+    
+    arquivo.close()
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
     arquivo = open("cadastroADM.txt", "w", encoding='utf-8')
     for n in range(len(lista_produto)):
         arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
     arquivo.close()
+<<<<<<< HEAD
  
  
  
+=======
+
+
+
+>>>>>>> 9153900935217298a1b811a1efae63b2b9e4ba0f
 #Main
  
 while confirm == "s":
