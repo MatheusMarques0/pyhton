@@ -1,3 +1,5 @@
+#Desafios:criar um arquivo txt e escreve dentro dele, ler um aquivo criado e exibir no terminal, criar um programa que conte quantas linhas tem o txt.
+
 def carros():
 
     carro1 = str(input("Digite um modelo de carro: "))
