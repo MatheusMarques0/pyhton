@@ -160,7 +160,7 @@ def ExcluirADM():
         cod_erase = str(input("[ERRO], por favor digite um código que exista: "))
  
     codigo_changer = codigo_produto.index(cod_erase)
-    print("\nO produto selecionado tem o código: %s. Descrição: %s. Preço: %s" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) 
+    print("\nO produto selecionado tem o código: %s. Descrição: %s. Preço: %s \n" %(lista_produto[codigo_changer][0], lista_produto[codigo_changer][1], lista_produto[codigo_changer][2])) 
  
     conf = str(input("Tem certeza que deseja apagar o produto? (1 = 'sim' / 2 = 'não'): "))
     while (conf != "1" and conf != "2"):
@@ -175,6 +175,40 @@ def ExcluirADM():
                 arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
     else:
         print("Ação Cancelada! \n")
+
+
+def operator():
+    ListarADM()
+
+    choose = str(input("Digite o código do produto que deseja comprar: "))
+    while choose not in codigo_produto:
+        choose = str(input("[ERRO] por favor digite um número válido: "))
+
+    codigo_choosed = codigo_produto.index(choose)
+    print("\nO produto selecionado tem o código: %s. Descrição: %s. Preço: %s \n" %(lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2]))#Como é bom reaproveitar código...Quero só ver na prova :D
+
+    quantidade = int(input("Digite a quantidade que deseja do produto: "))
+    while quantidade <= 0:
+        quantidade = int(input("[EROO] Digite uma quantidade VÁLIDA para o produto: "))
+
+    realmoney = float(lista_produto[codigo_choosed][2])
+
+    despesa = realmoney * quantidade
+
+    print("O total será de %0.2f \n" % (despesa))
+
+    print("Pedido do Cliente: Código: %s.  Descrição: %s. Preço: %s. Total a pagar: %0.2f \n" %(lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2], despesa))
+
+    conf = str(input("Deseja confirmar o pedido? (1 = sim / 2 = não): "))
+    while (conf != "1" and conf != "2"):
+        conf = int(input("[ERRO] Digite um comando válido (1/2): "))
+
+    if conf == "1":
+        print("Pedido Enviado com sucesso!")
+    else:
+        print("Pedido cancelado!")
+
+    print("\n\n")
 
 #Main
  
@@ -206,8 +240,10 @@ while confirm == "s":
  
     elif escolha == "2": #Se escolher operador... #se for 2, modo Operador
         print("A opção desejada foi de entrar como Operador! \n")
+        operator()
     elif escolha == "3": #Se escolher sair...
         print("A opção desejada foi de sair")
+        print("\n")
         confirm = "n"
     else: #Se nenhuma das opções for correta:
         print("[ERRO] Dígito inválido \n")
