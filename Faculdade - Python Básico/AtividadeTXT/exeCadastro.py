@@ -178,22 +178,26 @@ def ExcluirADM():
         with open("cadastroADM.txt", "w", encoding="utf-8") as arquivo: #se não colocar "with open" o 'arquivo' da erro
             for n in range(len(lista_produto)):
                 arquivo.write(lista_produto[n][0] + ";" + lista_produto[n][1] + ";" + lista_produto[n][2] + "\n")
+
+        print("\n")
+
+        print("Produto cancelado com sucesso!\n")
     else:
         print("Ação Cancelada! \n")
  
  
 def operator():
+    totalprice.clear() # se ele for em cancelar novas requições, quer dizer que ele não que mais comprar, por isso resetará essa lista
     choise = 1
-    ListarADM()
  
     name = str(input("Digite o seu nome: "))
     while name == "":
         name = str(input("[ERRO] Digite um nome válido: "))
  
     while choise == 1:
- 
-        choose = str(input("Digite o código do produto que deseja comprar: "))
+        lista_pedido.clear() # se ele quiser continuar a compra, a lista de pedidos será resetada, porém o preço ficará na lista totalprice (linha 20)
         ListarADM()
+        choose = str(input("Digite o código do produto que deseja comprar: "))
         while choose not in codigo_produto:
             choose = str(input("[ERRO] por favor digite um número válido: "))
  
@@ -210,7 +214,7 @@ def operator():
  
         print("O total será de %0.2f \n" % (despesa))
  
-        print("Pedido do Cliente %s: Código: %s.  Descrição: %s. Preço: %s. Total a pagar: %0.2f \n" %(name, lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2], despesa))
+        print("Pedido do Cliente %s: Código: %s.  Descrição: %s. Preço: %s. Quantidade Unitária: %d Total a pagar: %0.2f \n" %(name, lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2], quantidade, despesa))
  
         conf = str(input("Deseja confirmar o pedido? (1 = sim / 2 = não): "))
         while (conf != "1" and conf != "2"):
@@ -218,17 +222,18 @@ def operator():
  
         if conf == "1":
             print("Pedido Enviado com sucesso!")
-            lista_pedido.append([lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2], name, f"{despesa}"])
+            lista_pedido.append([name, lista_produto[codigo_choosed][0], lista_produto[codigo_choosed][1], lista_produto[codigo_choosed][2], f"{despesa}"])
+            totalprice.append(despesa)
  
             arquivo = open("pedidos.txt", 'a+',  encoding='utf-8')
             dados = arquivo.readlines()
  
             if dados == []:
-                arquivo.write((lista_pedido[0][0]) + " " + (lista_pedido[0][1]) + " " + (lista_pedido[0][2]) + " " + (lista_pedido[0][3]) + " " + (lista_pedido[0][4]) + "\n")
+                arquivo.write((lista_pedido[0][0]) + ": " + (lista_pedido[0][1]) + " " + (lista_pedido[0][2]) + " " + (lista_pedido[0][3]) + " " + (lista_pedido[0][4]) + "\n")
                 arquivo.close()
             else:
                 for i in range(len(dados)):
-                    arquivo.write((lista_pedido[0][0]) + " " + (lista_pedido[0][1]) + " " + (lista_pedido[0][2]) + " " + (lista_pedido[0][3]) + " " + (lista_pedido[0][4]) + "\n")
+                    arquivo.write((lista_pedido[0][0]) + ": " + (lista_pedido[0][1]) + " " + (lista_pedido[0][2]) + " " + (lista_pedido[0][3]) + " " + (lista_pedido[0][4]) + "\n")
                 arquivo.close()
  
  
@@ -238,10 +243,32 @@ def operator():
         repeat = str(input("Deseja reenviar outro pedido? (1 = sim / 2 = não): "))
         while repeat != "1" and  repeat != "2":
             repeat = str(input("[ERRO] Digite um código válido (1 - sim / 2 - não): "))
+
         if repeat == "1":
             print("A opção desejada foi de continuar as requisições")
         else:
             print("A opção desejada foi de cancelar mais requisições \n")
+            pricebuy = sum(totalprice)
+            
+            confirpurchase = str(input("O total da compra será de: %s reais, deseja confirmar a compra? (1 = sim / 2 = não): " %(pricebuy)))
+
+            while confirpurchase != "1" and confirpurchase != "2":
+                confirpurchase = str(input("[ERRO] Número inválido, digite uma opção correta (1 - sim / 2 - não): "))
+
+            if confirpurchase == "1":
+                arquivo = open("pedidos.txt", "a+", encoding='utf-8')
+                arquivo.seek(0) #leva o cursor para o início para poder ler
+
+                #if linha == [] é possível aqui? 
+
+                arquivo.write(name + " | Total a pagar: " + str(pricebuy) + " reais")
+                arquivo.close()
+
+                print("Compra feita com sucesso!")
+
+            else:
+                print("Compra Cancelada!") 
+
             choise = 2
            
  

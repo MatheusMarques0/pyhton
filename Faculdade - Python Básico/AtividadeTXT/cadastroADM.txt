@@ -6,4 +6,3 @@
 105;sorvete;5
 106;pepsi;8
 107;coca;9
-108;tang;4
